@@ -1,5 +1,4 @@
 import express from 'express';
-import path from 'path';
 import { Socket } from 'socket.io';
 
 const app = express();
@@ -8,8 +7,6 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server, { cors: { origin: '*' } });
 const remindersAPI = require('./routes/reminders');
 const derecho = require('./routes/derecho');
-
-/* app.use('/', express.static(path.join(__dirname, '../client/build'))); */
 
 io.on('connection', (socket: Socket) => {
   socket.on('board-update', () => {
@@ -31,11 +28,7 @@ app.use('/derecho', derecho);
 
 app.use('*', (req, res) => {
   res.status(404).send('Not found');
-})
-
-/* app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-}); */
+});
 
 server.listen(port, () => {
   console.log('Server running...');

@@ -19,8 +19,6 @@ router.post('/lists', async (req: Request, res: Response) => {
       title, tasks, completed, lock, owner, collaborators, listType,
     } = req.body;
 
-    // console.log(title, tasks, completed, lock, owner, collaborators, listType)
-
     const response = await mongo.addList(
       title,
       tasks,
@@ -61,13 +59,11 @@ router.put('/lists', async (req: Request, res: Response) => {
     if (id) {
       const response = await mongo.listComplete(id, complete);
       errorHandler(response);
-      // return res.status(204).send();
       return res.json(response);
     }
     if (list) {
       const response = await mongo.editList(list);
       errorHandler(response);
-      // return res.status(204).send();
       return res.status(204).send();
     }
     return null;
@@ -124,7 +120,7 @@ router.put('/lists/tasks', async (req: Request, res: Response) => {
     }
 
     if (id && tasks) {
-      const response = await mongo.removeTask(id, tasks); // Move this to new route
+      const response = await mongo.removeTask(id, tasks);
       errorHandler(response);
       return res.status(204).send();
     }
