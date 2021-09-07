@@ -7,6 +7,7 @@ const port = process.env.PORT || 3001;
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, { cors: { origin: '*' } });
 const remindersAPI = require('./routes/reminders');
+const derecho = require('./routes/derecho');
 
 /* app.use('/', express.static(path.join(__dirname, '../client/build'))); */
 
@@ -25,6 +26,8 @@ io.on('connection', (socket: Socket) => {
 });
 
 app.use('/reminders', remindersAPI);
+
+app.use('/derecho', derecho);
 
 app.use('*', (req, res) => {
   res.status(404).send('Not found');

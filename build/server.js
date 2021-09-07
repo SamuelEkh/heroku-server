@@ -9,6 +9,7 @@ var port = process.env.PORT || 3001;
 var server = require('http').createServer(app);
 var io = require('socket.io')(server, { cors: { origin: '*' } });
 var remindersAPI = require('./routes/reminders');
+var derecho = require('./routes/derecho');
 /* app.use('/', express.static(path.join(__dirname, '../client/build'))); */
 io.on('connection', function (socket) {
     socket.on('board-update', function () {
@@ -24,6 +25,7 @@ io.on('connection', function (socket) {
     });
 });
 app.use('/reminders', remindersAPI);
+app.use('/derecho', derecho);
 app.use('*', function (req, res) {
     res.status(404).send('Not found');
 });
