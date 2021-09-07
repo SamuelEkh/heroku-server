@@ -82,8 +82,8 @@ const findLists = async (user: string) => {
     if (lists.length === 0) throw new Error('This user has no lists');
     return lists;
   } catch (err) {
-    if (err.message === 'This user has no lists') {
-      return { error: err.message };
+    if ((err as Error).message === 'This user has no lists') {
+      return { error: (err as Error).message };
     }
     return { error: 'Error fetching lists' };
   }
@@ -100,8 +100,8 @@ const findOneList = async (id: string) => {
     if (list.length === 0) throw new Error('List not found');
     return list;
   } catch (err) {
-    if (err.message === 'List not found') {
-      return { error: err.message };
+    if ((err as Error).message === 'List not found') {
+      return { error: (err as Error).message };
     }
     return { error: 'Error fetching list' };
   }
@@ -124,8 +124,8 @@ const addTask = async (id: string, task: task) => {
 
     return response;
   } catch (err) {
-    if (err.message === 'No ID or Task') {
-      return err.message;
+    if ((err as Error).message === 'No ID or Task') {
+      return (err as Error).message;
     }
     return { error: 'Error creating task' };
   }
@@ -148,7 +148,7 @@ const listComplete = async (id: string, complete: boolean) => {
 
     return response;
   } catch (err) {
-    return { error: err.message };
+    return { error: (err as Error).message };
   }
 };
 
@@ -164,7 +164,7 @@ const editList = async (list: IList) => {
 
     return response;
   } catch (err) {
-    return { error: err.message };
+    return { error: (err as Error).message };
   }
 };
 
@@ -175,7 +175,7 @@ const deleteList = async (id: string) => {
 
     return response;
   } catch (err) {
-    return { error: err.message };
+    return { error: (err as Error).message };
   }
 };
 
@@ -197,7 +197,7 @@ const taskComplete = async (id: string, task: task, complete: boolean) => {
 
     return response;
   } catch (err) {
-    return { error: err.message };
+    return { error: (err as Error).message };
   }
 };
 
@@ -219,7 +219,7 @@ const editTask = async (id: string, originalTask: task, task: task) => {
 
     return response;
   } catch (err) {
-    return { error: err.message };
+    return { error: (err as Error).message };
   }
 };
 
@@ -240,7 +240,7 @@ const removeTask = async (id: string, tasks: task) => {
 
     return response;
   } catch (err) {
-    return { error: err.message };
+    return { error: (err as Error).message };
   }
 };
 

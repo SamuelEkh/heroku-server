@@ -34,7 +34,7 @@ router.post('/lists', async (req: Request, res: Response) => {
 
     res.status(201).json(response);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send((err as Error).message);
   }
 });
 
@@ -51,7 +51,7 @@ router.get('/lists/:id', async (req: Request, res: Response) => {
     errorHandler(response);
     return res.json(response);
   } catch (err) {
-    return res.status(404).send(err.message);
+    return res.status(404).send((err as Error).message);
   }
 });
 
@@ -72,7 +72,7 @@ router.put('/lists', async (req: Request, res: Response) => {
     }
     return null;
   } catch (err) {
-    return res.status(500).send(err.message);
+    return res.status(500).send((err as Error).message);
   }
 });
 
@@ -83,7 +83,7 @@ router.delete('/lists', async (req: Request, res: Response) => {
     errorHandler(response);
     return res.status(204).json(response);
   } catch (err) {
-    return res.status(500).send(err.message);
+    return res.status(500).send((err as Error).message);
   }
 });
 
@@ -95,7 +95,7 @@ router.post('/lists/tasks', async (req: Request, res: Response) => {
 
     res.status(201).json(response);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send((err as Error).message);
   }
 });
 
@@ -131,7 +131,7 @@ router.put('/lists/tasks', async (req: Request, res: Response) => {
 
     throw new Error('Invalid parameters');
   } catch (err) {
-    return res.status(500).send(err.message);
+    return res.status(500).send((err as Error).message);
   }
 });
 
