@@ -10,7 +10,6 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server, { cors: { origin: '*' } });
 var remindersAPI = require('./routes/reminders');
 var derecho = require('./routes/derecho');
-/* app.use('/', express.static(path.join(__dirname, '../client/build'))); */
 io.on('connection', function (socket) {
     socket.on('board-update', function () {
         socket.broadcast.emit('update-board');
@@ -29,9 +28,6 @@ app.use('/derecho', derecho);
 app.use('*', function (req, res) {
     res.status(404).send('Not found');
 });
-/* app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-}); */
 server.listen(port, function () {
     console.log('Server running...');
 });

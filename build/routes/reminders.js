@@ -105,7 +105,6 @@ router.put('/lists', function (req, res) { return __awaiter(void 0, void 0, void
             case 1:
                 response = _b.sent();
                 errorHandler(response);
-                // return res.status(204).send();
                 return [2 /*return*/, res.json(response)];
             case 2:
                 if (!list) return [3 /*break*/, 4];
@@ -113,7 +112,6 @@ router.put('/lists', function (req, res) { return __awaiter(void 0, void 0, void
             case 3:
                 response = _b.sent();
                 errorHandler(response);
-                // return res.status(204).send();
                 return [2 /*return*/, res.status(204).send()];
             case 4: return [2 /*return*/, null];
             case 5:
