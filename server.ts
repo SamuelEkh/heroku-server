@@ -1,12 +1,8 @@
 import express from 'express';
 import { Socket } from 'socket.io';
-var cors = require('cors');
+const cors = require('cors');
 
 const app = express();
-app.use(cors({ 
-  origin: '*',
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-}));
 const port = process.env.PORT || 3001;
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, { cors: { origin: '*' } });
@@ -26,6 +22,11 @@ io.on('connection', (socket: Socket) => {
     socket.broadcast.emit('delete-list');
   });
 });
+
+app.use(cors({ 
+  origin: '*',
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
 
 app.use('/reminders', remindersAPI);
 
