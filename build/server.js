@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+var cors = require('cors');
 var app = (0, express_1.default)();
 var port = process.env.PORT || 3001;
 var server = require('http').createServer(app);
@@ -23,6 +24,21 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('delete-list');
     });
 });
+/* app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  if ('OPTIONS' == req.method) {
+  res.sendStatus(200);
+  } else {
+    next();
+  }
+}); */
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use('/reminders', remindersAPI);
 app.use('/derecho', derecho);
 app.use('*', function (req, res) {
