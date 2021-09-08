@@ -3,13 +3,7 @@ import mongoose from 'mongoose';
 require('dotenv').config();
 const List = require('../models/reminders/list');
 
-const mongoDB = `mongodb+srv://Samuel:${process.env.REMINDERS_DB_KEY}@cluster0.tffuu.mongodb.net/Reminders?retryWrites=true&w=majority`;
-
-mongoose.connect(mongoDB, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-}).then(() => { console.log('Database connected'); });
+/* const mongoDB = `mongodb+srv://Samuel:${process.env.REMINDERS_DB_KEY}@cluster0.tffuu.mongodb.net/Reminders?retryWrites=true&w=majority`; */
 
 type task = {
   mainTask: string,

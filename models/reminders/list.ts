@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+require('dotenv').config()
 
 const listSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -11,6 +12,10 @@ const listSchema = new mongoose.Schema({
 },
 { collection: 'todo-lists' });
 
-const List = mongoose.model('todo-lists', listSchema);
+const remindersDB = mongoose.connection.useDb('Reminders');
+
+const List = remindersDB.model('todo-lists', listSchema);
+
+/* const List = mongoose.model('todo-lists', listSchema); */
 
 module.exports = List;

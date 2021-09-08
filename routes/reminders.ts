@@ -1,15 +1,9 @@
 import express, { Request, Response } from 'express';
-/* const cors = require('cors'); */
 
 const router = express.Router();
 const mongo = require('../mongoose_functions/reminders');
 
 router.use(express.json());
-/* router.use(cors({ 
-  origin: '*',
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-})); */
 
 type errObj = {
   error: string

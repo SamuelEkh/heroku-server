@@ -35,19 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = __importDefault(require("mongoose"));
 require('dotenv').config();
 var List = require('../models/reminders/list');
-var mongoDB = "mongodb+srv://Samuel:" + process.env.REMINDERS_DB_KEY + "@cluster0.tffuu.mongodb.net/Reminders?retryWrites=true&w=majority";
-mongoose_1.default.connect(mongoDB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-}).then(function () { console.log('Database connected'); });
 var addList = function (title, tasks, completed, lock, owner, collaborators, listType) { return __awaiter(void 0, void 0, void 0, function () {
     var list, err_1;
     return __generator(this, function (_a) {

@@ -40,7 +40,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-/* const cors = require('cors'); */
 var router = express_1.default.Router();
 var mongo = require('../mongoose_functions/reminders');
 router.use(express_1.default.json());

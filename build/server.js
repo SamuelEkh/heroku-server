@@ -5,12 +5,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var cors = require('cors');
+var mongoose_1 = __importDefault(require("mongoose"));
 var app = (0, express_1.default)();
 var port = process.env.PORT || 3001;
 var server = require('http').createServer(app);
 var io = require('socket.io')(server, { cors: { origin: '*' } });
 var remindersAPI = require('./routes/reminders');
 var derecho = require('./routes/derecho');
+var visimusic = require('./routes/visimusic');
+mongoose_1.default.connect("mongodb+srv://Samuel:" + process.env.REMINDERS_DB_KEY + "@cluster0.tffuu.mongodb.net/Reminders?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+}).then(function (res) { return console.log('Database connected'); });
 io.on('connection', function (socket) {
     socket.on('board-update', function () {
         socket.broadcast.emit('update-board');
@@ -24,16 +32,6 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('delete-list');
     });
 });
-/* app.all('*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  if ('OPTIONS' == req.method) {
-  res.sendStatus(200);
-  } else {
-    next();
-  }
-}); */
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
@@ -41,6 +39,7 @@ app.use(cors({
 }));
 app.use('/reminders', remindersAPI);
 app.use('/derecho', derecho);
+app.use('/visimusic', visimusic);
 app.use('*', function (req, res) {
     res.status(404).send('Not found');
 });
