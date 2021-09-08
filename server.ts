@@ -25,7 +25,8 @@ io.on('connection', (socket: Socket) => {
 
 app.use(cors({ 
   origin: '*',
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+  headers: true
 }));
 
 app.use('/reminders', remindersAPI);

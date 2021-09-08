@@ -7,7 +7,8 @@ const mongo = require('../mongoose_functions/reminders');
 router.use(express.json());
 router.use(cors({ 
   origin: '*',
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+  headers: true
 }));
 
 type errObj = {
