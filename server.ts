@@ -23,7 +23,7 @@ io.on('connection', (socket: Socket) => {
   });
 });
 
-app.all('*', function(req, res, next) {
+/* app.all('*', function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -32,13 +32,13 @@ app.all('*', function(req, res, next) {
   } else {
     next();
   }
-});
+}); */
 
-/* app.use(cors({ 
+app.use(cors({ 
   origin: '*',
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
-  headers: true
-})); */
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use('/reminders', remindersAPI);
 
