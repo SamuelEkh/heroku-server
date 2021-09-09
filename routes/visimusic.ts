@@ -48,24 +48,25 @@ router.post('/products', async (req: Request, res: Response) => {
 
 router.post('/users/register', async (req: Request, res: Response) => {
   const { name, email, username, password } = req.body;
-  const user = await mongo.registerUser(name, email, username, password, (data: any) => res.cookie('token', data));
-  console.log(name, username);
+/*   await mongo.registerUser(name, email, username, password, (data: any) => res.cookie('token', data)); */
+  await mongo.registerUser(name, email, username, password, (data: any) => res.json({'token': data}));
   await mongo.addCart(username);
 
-  res
+/*   res
     .json()
     .status(201)
-    .end();
+    .end(); */
 })
 
 router.post('/users/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
-  const user = await mongo.loginUser(username, password, (data: any) => res.cookie('token', data));
+/*   const user = await mongo.loginUser(username, password, (data: any) => res.cookie('token', data)); */
+  const user = await mongo.loginUser(username, password, (data: any) => res.json({"token": data}));
 
-  res
+/*   res
     .json()
     .status(201)
-    .end();
+    .end(); */
 })
 
 router.put('/carts', async (req: Request, res: Response) => {

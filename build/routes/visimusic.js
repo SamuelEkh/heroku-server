@@ -122,22 +122,19 @@ router.post('/products', function (req, res) { return __awaiter(void 0, void 0, 
     });
 }); });
 router.post('/users/register', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, email, username, password, user;
+    var _a, name, email, username, password;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _a = req.body, name = _a.name, email = _a.email, username = _a.username, password = _a.password;
-                return [4 /*yield*/, mongo.registerUser(name, email, username, password, function (data) { return res.cookie('token', data); })];
+                /*   await mongo.registerUser(name, email, username, password, (data: any) => res.cookie('token', data)); */
+                return [4 /*yield*/, mongo.registerUser(name, email, username, password, function (data) { return res.json({ 'token': data }); })];
             case 1:
-                user = _b.sent();
-                console.log(name, username);
+                /*   await mongo.registerUser(name, email, username, password, (data: any) => res.cookie('token', data)); */
+                _b.sent();
                 return [4 /*yield*/, mongo.addCart(username)];
             case 2:
                 _b.sent();
-                res
-                    .json()
-                    .status(201)
-                    .end();
                 return [2 /*return*/];
         }
     });
@@ -148,13 +145,9 @@ router.post('/users/login', function (req, res) { return __awaiter(void 0, void 
         switch (_b.label) {
             case 0:
                 _a = req.body, username = _a.username, password = _a.password;
-                return [4 /*yield*/, mongo.loginUser(username, password, function (data) { return res.cookie('token', data); })];
+                return [4 /*yield*/, mongo.loginUser(username, password, function (data) { return res.json({ "token": data }); })];
             case 1:
                 user = _b.sent();
-                res
-                    .json()
-                    .status(201)
-                    .end();
                 return [2 /*return*/];
         }
     });
