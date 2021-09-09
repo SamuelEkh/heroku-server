@@ -4,6 +4,8 @@ require('dotenv').config();
 
 const router = express.Router();
 
+router.use(express.json());
+
 router.post('/contact', (req: Request, res: Response) => {
 
   const transporter = nodemailer.createTransport({

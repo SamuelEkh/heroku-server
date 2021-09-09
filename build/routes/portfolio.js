@@ -7,6 +7,7 @@ var nodemailer_1 = __importDefault(require("nodemailer"));
 var express_1 = __importDefault(require("express"));
 require('dotenv').config();
 var router = express_1.default.Router();
+router.use(express_1.default.json());
 router.post('/contact', function (req, res) {
     var transporter = nodemailer_1.default.createTransport({
         service: 'gmail',
