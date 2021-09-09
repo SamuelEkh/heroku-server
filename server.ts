@@ -9,6 +9,7 @@ const io = require('socket.io')(server, { cors: { origin: '*' } });
 const remindersAPI = require('./routes/reminders');
 const derecho = require('./routes/derecho');
 const visimusic = require('./routes/visimusic');
+const portfolio = require('./routes/portfolio');
 
 mongoose.connect(`mongodb+srv://Samuel:${process.env.REMINDERS_DB_KEY}@cluster0.tffuu.mongodb.net/Reminders?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
@@ -42,6 +43,8 @@ app.use('/reminders', remindersAPI);
 app.use('/derecho', derecho);
 
 app.use('/visimusic', visimusic);
+
+app.use('/portfolio', portfolio);
 
 app.use('*', (req, res) => {
   res.status(404).send('Not found');

@@ -42,18 +42,6 @@ var User = require('../models/visimusic/user');
 var Cart = require('../models/visimusic/cart');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-/* mongoose.connect(`mongodb+srv://Samuel:${process.env.REMINDERS_DB_KEY}@cluster0.tffuu.mongodb.net/Reminders?retryWrites=true&w=majority`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-}) */
-/* const postAllProducts = async (products: any) => {
-  products.forEach((product: any) => {
-    const allProducts = new Product(product);
-    allProducts.save();
-  })
-}
- */
 var findUser = function (filter) { return __awaiter(void 0, void 0, void 0, function () {
     var response;
     return __generator(this, function (_a) {
@@ -238,12 +226,8 @@ var loginUser = function (username, password, cb) { return __awaiter(void 0, voi
                         email: user.email
                     }, process.env.JWT_SECRET);
                     return [2 /*return*/, cb(token)];
-                    // res.cookie('token', token);
-                    // return res.json({status: 'ok', data: token})
                 }
-                return [2 /*return*/, console.log('error in loginUser')
-                    // res.json({status: 'error', error: 'invalid username/password'})
-                ];
+                return [2 /*return*/, console.log('error in loginUser')];
         }
     });
 }); };

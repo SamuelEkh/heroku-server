@@ -43,10 +43,6 @@ var express_1 = __importDefault(require("express"));
 var router = express_1.default.Router();
 var mongo = require('../mongoose_functions/visimusic');
 router.use(express_1.default.json());
-/* router.post('/products/all', async (req: Request, res: Response) => {
-  await mongo.postAllProducts(req.body)
-    .then((data: any) => res.json(data));
-}) */
 router.get('/users/:username', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var username, filter;
     return __generator(this, function (_a) {
@@ -127,10 +123,8 @@ router.post('/users/register', function (req, res) { return __awaiter(void 0, vo
         switch (_b.label) {
             case 0:
                 _a = req.body, name = _a.name, email = _a.email, username = _a.username, password = _a.password;
-                /*   await mongo.registerUser(name, email, username, password, (data: any) => res.cookie('token', data)); */
                 return [4 /*yield*/, mongo.registerUser(name, email, username, password, function (data) { return res.json({ 'token': data }); })];
             case 1:
-                /*   await mongo.registerUser(name, email, username, password, (data: any) => res.cookie('token', data)); */
                 _b.sent();
                 return [4 /*yield*/, mongo.addCart(username)];
             case 2:

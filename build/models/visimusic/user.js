@@ -11,8 +11,5 @@ var userSchema = new mongoose_1.default.Schema({
     username: { type: String, required: true, unique: true },
     encryptedPassword: { type: String, required: true }
 }, { collection: 'users' });
-/* const visiDB = mongoose.connection.useDb('VisiShop');
-
-const UserSchema = visiDB.model('user', userSchema); */
 var UserSchema = mongoose_1.default.model('user', userSchema);
 module.exports = UserSchema;

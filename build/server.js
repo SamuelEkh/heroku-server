@@ -13,6 +13,7 @@ var io = require('socket.io')(server, { cors: { origin: '*' } });
 var remindersAPI = require('./routes/reminders');
 var derecho = require('./routes/derecho');
 var visimusic = require('./routes/visimusic');
+var portfolio = require('./routes/portfolio');
 mongoose_1.default.connect("mongodb+srv://Samuel:" + process.env.REMINDERS_DB_KEY + "@cluster0.tffuu.mongodb.net/Reminders?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useFindAndModify: false,
@@ -40,6 +41,7 @@ app.use(cors({
 app.use('/reminders', remindersAPI);
 app.use('/derecho', derecho);
 app.use('/visimusic', visimusic);
+app.use('/portfolio', portfolio);
 app.use('*', function (req, res) {
     res.status(404).send('Not found');
 });

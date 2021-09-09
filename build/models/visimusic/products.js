@@ -19,7 +19,5 @@ var productSchema = new mongoose_1.default.Schema({
     reviews: { type: Array },
     img: { type: String, required: true },
 }, { collection: 'products' });
-/* const visiDB = mongoose.connection.useDb('VisiShop'); */
-/* const ProductSchema = visiDB.model('Product', productSchema); */
 var ProductSchema = mongoose_1.default.model('Product', productSchema);
 module.exports = ProductSchema;

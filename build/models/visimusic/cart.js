@@ -9,8 +9,5 @@ var cartSchema = new mongoose_1.default.Schema({
     cartUser: { type: String, required: true, unique: true },
     items: { type: Array, required: true }
 }, { collection: 'carts' });
-/* const visiDB = mongoose.connection.useDb('VisiShop');
-
-const CartSchema = visiDB.model('cart', cartSchema); */
 var CartSchema = mongoose_1.default.model('cart', cartSchema);
 module.exports = CartSchema;

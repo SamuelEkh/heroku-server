@@ -14,7 +14,5 @@ var listSchema = new mongoose_1.default.Schema({
     collaborators: { type: Array, required: true },
     listType: { type: String, required: true },
 }, { collection: 'todo-lists' });
-var remindersDB = mongoose_1.default.connection.useDb('Reminders');
-var List = remindersDB.model('todo-lists', listSchema);
-/* const List = mongoose.model('todo-lists', listSchema); */
+var List = mongoose_1.default.model('todo-lists', listSchema);
 module.exports = List;
