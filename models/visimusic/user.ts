@@ -10,10 +10,6 @@ const userSchema = new mongoose.Schema({
   { collection: 'users' }
 )
 
-/* const visiDB = mongoose.connection.useDb('VisiShop');
-
-const UserSchema = visiDB.model('user', userSchema); */
-
 const UserSchema = mongoose.model('user', userSchema);
 
 module.exports = UserSchema;

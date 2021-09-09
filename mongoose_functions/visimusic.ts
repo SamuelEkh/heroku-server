@@ -6,19 +6,6 @@ const Cart = require('../models/visimusic/cart');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-/* mongoose.connect(`mongodb+srv://Samuel:${process.env.REMINDERS_DB_KEY}@cluster0.tffuu.mongodb.net/Reminders?retryWrites=true&w=majority`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-}) */
-
-/* const postAllProducts = async (products: any) => {
-  products.forEach((product: any) => {
-    const allProducts = new Product(product);
-    allProducts.save();
-  })
-}
- */
 const findUser = async (filter: any) => {
   const response = await User.find(filter).exec();
   return response;
@@ -151,15 +138,9 @@ const loginUser = async (username: string, password: string, cb: any) => {
     }, process.env.JWT_SECRET)
 
     return cb(token);
-
-    // res.cookie('token', token);
-
-    // return res.json({status: 'ok', data: token})
   }
 
   return console.log('error in loginUser')
-
-  // res.json({status: 'error', error: 'invalid username/password'})
 
 }
 

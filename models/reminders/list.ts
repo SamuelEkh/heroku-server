@@ -12,10 +12,6 @@ const listSchema = new mongoose.Schema({
 },
 { collection: 'todo-lists' });
 
-const remindersDB = mongoose.connection.useDb('Reminders');
-
-const List = remindersDB.model('todo-lists', listSchema);
-
-/* const List = mongoose.model('todo-lists', listSchema); */
+const List = mongoose.model('todo-lists', listSchema);
 
 module.exports = List;

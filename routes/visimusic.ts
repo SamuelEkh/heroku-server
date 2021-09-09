@@ -4,11 +4,6 @@ const mongo = require('../mongoose_functions/visimusic');
 
 router.use(express.json());
 
-/* router.post('/products/all', async (req: Request, res: Response) => {
-  await mongo.postAllProducts(req.body)
-    .then((data: any) => res.json(data));
-}) */
-
 router.get('/users/:username', async (req: Request, res: Response) => {
   const { username } = req.params;
   const filter = { username };
@@ -48,25 +43,14 @@ router.post('/products', async (req: Request, res: Response) => {
 
 router.post('/users/register', async (req: Request, res: Response) => {
   const { name, email, username, password } = req.body;
-/*   await mongo.registerUser(name, email, username, password, (data: any) => res.cookie('token', data)); */
   await mongo.registerUser(name, email, username, password, (data: any) => res.json({'token': data}));
   await mongo.addCart(username);
-
-/*   res
-    .json()
-    .status(201)
-    .end(); */
 })
 
 router.post('/users/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
-/*   const user = await mongo.loginUser(username, password, (data: any) => res.cookie('token', data)); */
   const user = await mongo.loginUser(username, password, (data: any) => res.json({"token": data}));
 
-/*   res
-    .json()
-    .status(201)
-    .end(); */
 })
 
 router.put('/carts', async (req: Request, res: Response) => {

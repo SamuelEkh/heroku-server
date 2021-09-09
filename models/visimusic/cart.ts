@@ -8,10 +8,6 @@ const cartSchema = new mongoose.Schema({
   { collection: 'carts' }
 )
 
-/* const visiDB = mongoose.connection.useDb('VisiShop');
-
-const CartSchema = visiDB.model('cart', cartSchema); */
-
 const CartSchema = mongoose.model('cart', cartSchema);
 
 module.exports = CartSchema;

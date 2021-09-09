@@ -18,10 +18,6 @@ const productSchema = new mongoose.Schema({
   { collection: 'products' }
 )
 
-/* const visiDB = mongoose.connection.useDb('VisiShop'); */
-
-/* const ProductSchema = visiDB.model('Product', productSchema); */
-
 const ProductSchema = mongoose.model('Product', productSchema);
 
 module.exports = ProductSchema;
